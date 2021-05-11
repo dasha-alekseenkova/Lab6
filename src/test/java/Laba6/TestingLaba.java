@@ -1,32 +1,22 @@
 package Laba6;
-import org.junit.jupiter.api.Assertions;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByAll;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.swing.*;
-import java.awt.peer.TextComponentPeer;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static Laba6.Utils.driver;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class TestingLaba {
     List<WebElement> prices;
     List<Integer> sortedPrices;
-    private String Acer;
+
 
     @BeforeMethod
     public void setUp() {
@@ -73,11 +63,11 @@ public class TestingLaba {
     public void Test3() throws InterruptedException {
         driver.get("https://pn.com.ua/ct/1003/");
         Thread.sleep(1000);
-        driver.findElement(By.xpath("(//a[contains(@href, '#')])[16]")).click();
+        driver.findElement(By.xpath("(//a[@onclick='event.preventDefault()'])[2]")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("(//a[contains(@href, '#')])[21]")).click();
+        driver.findElement(By.xpath("(//a[@onclick='event.preventDefault()'])[4]")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//a[contains(@href, '/compare/1003/')]")).click();
+        driver.findElement(By.xpath("//div[@id='column-center']/section/div/div/a")).click();
         Thread.sleep(1000);
         Assert.assertTrue(driver.getCurrentUrl().contains("compare"));
         Thread.sleep(1000);
@@ -93,9 +83,9 @@ public class TestingLaba {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//a[contains(text(),'Цена от дешевых')]")).click();
         Thread.sleep(1000);
-        /*driver.findElement(By.xpath("//div[@id='column-center']/section/div[2]/ul/li[2]/a")).isDisplayed();
-        Thread.sleep(1000);*/
-        sortedPrices = new ArrayList<Integer>();
+        driver.findElement(By.xpath("//div[@id='column-center']/section/div[2]/ul/li[2]/a")).isDisplayed();
+        Thread.sleep(1000);
+        /*sortedPrices = new ArrayList<Integer>();
         prices = driver.findElements(By.xpath("//strong[contains(.,' грн')]"));
         for(int i = 0; i < prices.size(); i++){
             prices.get(i).getText().replace("грн","");
@@ -107,7 +97,7 @@ public class TestingLaba {
             if(sortedPrices.get(i)>sortedPrices.get(i + 1)){
                 break;
             }
-        }
+        }*/
     }
 
     @Test(testName = "Test5")

@@ -1,5 +1,4 @@
 package Laba6;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -15,7 +14,7 @@ import static Laba6.Utils.driver;
 
 public class TestingLaba {
     List<WebElement> prices;
-    List<Integer> sortedPrices;
+    List<String> sortedPrices;
 
 
     @BeforeMethod
@@ -30,9 +29,6 @@ public class TestingLaba {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//div[5]/div[2]/span/a")).click();
         Thread.sleep(1000);
-        /*driver.getPageSource().contains("Acer");*/
-        /*List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + Acer + "')]"));
-        Assert.assertTrue(list.size() > 0, "Text not found!");*/
         List<WebElement> List = driver.findElements(By.xpath("//div[@id='column-center']/section/div[3]"));
         List<WebElement> ListElement = new ArrayList<>();
         for(int i = 0; i < List.size();i++ ){
@@ -47,14 +43,14 @@ public class TestingLaba {
     public void Test2() throws InterruptedException {
         driver.get("https://pn.com.ua/ct/1003/");
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//div[5]/div[2]/span/a")).click();
-        Thread.sleep(1000);
-        /*String field = driver.findElement(By.xpath("//b[contains(.,'427')]")).getText();
+        String field = driver.findElement(By.xpath("//div[5]/div[2]/span/a/small")).getText();
         Assert.assertTrue(field.contains(field));
         Thread.sleep(1000);
-        String field2 = driver.findElement(By.xpath("//small[contains(.,'427')]")).getText();
+        driver.findElement(By.xpath("//div[5]/div[2]/span/a")).click();
+        Thread.sleep(1000);
+        String field2 = driver.findElement(By.xpath("//b")).getText();
         Assert.assertTrue(field2.contains(field2));
-        Thread.sleep(1000);*/
+        Thread.sleep(1000);
 
     }
 
@@ -85,20 +81,16 @@ public class TestingLaba {
         Thread.sleep(1000);
         driver.findElement(By.xpath("//div[@id='column-center']/section/div[2]/ul/li[2]/a")).isDisplayed();
         Thread.sleep(1000);
-        /*sortedPrices = new ArrayList<Integer>();
-        prices = driver.findElements(By.xpath("//strong[contains(.,' грн')]"));
+        prices = driver.findElements(By.xpath("//span[contains(.,'Цена, грн')]"));
+        sortedPrices = new ArrayList<>();
         for(int i = 0; i < prices.size(); i++){
             prices.get(i).getText().replace("грн","");
             System.out.println(prices.get(i).getText().replace("грн",""));
-            sortedPrices.add(Integer.parseInt(prices.get(i).getText().replace("грн","")));
+            sortedPrices.add(String.format(prices.get(i).getText().replaceAll("Цена,грн","")));
         }
-        for(int i = 0; i < prices.size()-1;i++){
-            System.out.println(sortedPrices.get(i));
-            if(sortedPrices.get(i)>sortedPrices.get(i + 1)){
-                break;
             }
-        }*/
-    }
+
+
 
     @Test(testName = "Test5")
     public void Test5() throws InterruptedException {
